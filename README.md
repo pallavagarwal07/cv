@@ -5,7 +5,7 @@ The purpose of this project is to parse the latex file of my CV and create a obj
 
 ## Example:
 
-'''
+```
                         Pallav Agarwal
                         /           \
                    Academics        Projects
@@ -13,4 +13,4 @@ The purpose of this project is to parse the latex file of my CV and create a obj
                  CPI      Achievements      Robocon
                  /           /      \
                10         CFD       CHAOS
-'''
+```
