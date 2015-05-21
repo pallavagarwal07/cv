@@ -7,12 +7,11 @@
     </head>
     <body>
         Hello World
-        <h1 style="display: none;" id="content">
-            <?php
-            $str = file_get_contents("../latex/cv.tex");
-            $coded = base64_encode($str);
-            echo '<script type="text/javascript">LoadFile("'.$coded.'")</script>'
-            ?>
-        </h1>
+        <?php
+        $str = file_get_contents("../latex/cv.tex");
+        $coded = base64_encode($str);
+        echo '<script type="text/javascript">LoadFile("'.$coded.'")</script>'
+        ?>
+        <button type="button" onclick='Test();'>Yo</button>
     </body>
 </html>
