@@ -25,6 +25,7 @@ function LoadFile(str) {
             cur.data.push(stringParse(lines[i]));
     }
     print(root, 0);
+    printChildrenNames(root.children[6]);
 }
 
 var node = function(pNode, name, type){
@@ -35,11 +36,71 @@ var node = function(pNode, name, type){
     this.data = [];
 }
 
+function printChildrenNames(node)
+{
+    var arr = [];
+    for(var i=0; i<node.data.length; i++)
+        if(node.data[i])
+        {
+            if(typeof(node.data[i]) == 'string')
+                arr.push([node.data[i]]);
+            else
+                arr.push(node.data[i]);
+        }
+
+    for(var i=0; i<node.children.length; i++)
+        if(node.children[i].name)
+        {
+            if(typeof(node.children[i].name) == 'string')
+                arr.push([node.children[i].name]);
+            else
+                arr.push(node.children[i].name);
+        }
+    if(arr)
+        arr = tabular(arr);
+    for(var i=0; i<arr.length; i++)
+        write(arr[i]);
+}
+
+function tabular(arr)
+{
+    var maxele = 0;
+    for(var i=0; i<arr.length; i++)
+    {
+        if(arr[i][0].length > 60)
+        {
+            var j = 59;
+            while(j>=0 && arr[i][0][j] != ' ')
+                j--;
+            var str = ["__" + arr[i][0].substring(j+1)];
+            arr[i][0] = arr[i][0].substring(0, j);
+            arr.splice(i+1, 0, str);
+        }
+    }
+    for(var i=0; i<arr.length; i++)
+        maxele = Math.max(maxele, arr.length);
+    for(var j=0; j<maxele-1; j++)
+    {
+        var maxlen = 0;
+        for(var i=0; i<arr.length; i++)
+            maxlen = Math.max(maxlen, (arr[i][j] || []).length);
+        for(var i=0; i<arr.length; i++)
+            if(arr[i][j])
+                arr[i][j] += Array(maxlen-arr[i][j].length + 3).join(".");
+    }
+    for(var i=0; i<arr.length; i++)
+        arr[i] = arr[i].join(" ");
+    return arr;
+}
+
 function stringParse(str)
 {
     if(!str)
         return str;
+
     str = str.trim();
+    str = str.replace('section*', 'section');
+
     if(str.match(/\\hfill/))
     {
         arr = str.split('\\hfill');
@@ -47,11 +108,41 @@ function stringParse(str)
             arr[i] = stringParse(arr[i]);
         return arr;
     }
+    str = str.replace('\\LaTeX', 'LaTeX');
+    str = str.replace('$11^{th}$', '11th');
     str = str.replace('\\\\', '');
     str = str.replace('\\item', '\u25a0');
-    if(str.match(/^\\(hrulefill|begin|end|usepackage|documentclass|title|author)/))
-            str = null;
+    str = convert(str, 'small', '');
+    str = convert(str, 'large', '##');
+    str = convert(str, 'huge', '##');
+    str = convert(str, 'textit', '#');
+    str = convert(str, 'textbf', '##');
+
+    if(str.match(/^\\[a-z]+/))
+        return null;
+
     return str
+}
+
+function convert(str, token, repl)
+{
+    var index = str.indexOf('\\'+token+'{');
+    var start = index;
+    if(index == -1)
+        return str;
+    index += token.length + 2;
+    var bracks = 1;
+    while(bracks > 0 && index < str.length)
+    {
+        if(str[index] == '{')
+            bracks++;
+        if(str[index] == '}')
+            bracks--;
+        index++;
+    }
+    str = str.substring(0, start) + repl +
+        str.substring(start + 2 + token.length, index-1) + repl + str.substring(index);
+    return str;
 }
 
 function print(nNode, level)

@@ -5,7 +5,7 @@
         <script type="text/javascript" src="./jquery.js"></script>
         <script type="text/javascript" src="./parse.js"></script>
     </head>
-    <body>
+    <body style='font-family:"Source Code Pro", monospace'>
         <?php
         $str = file_get_contents("../latex/cv.tex");
         $coded = base64_encode($str);
