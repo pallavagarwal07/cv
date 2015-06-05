@@ -15,9 +15,9 @@
 %   http://www.latex-project.org/lppl.txt
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2003/12/01 or later.
-% 
+%
 % This work has the LPPL maintenance status "maintained".
-% 
+%
 % The Current Maintainer of this work is Javier Bezos.
 %
 % Notes
@@ -103,7 +103,7 @@
 \def\@notdefinable{%
   \PackageError{titlesec}%
     {Incompatible package}%
-    {Titlesec cannot continue defining its own macros 
+    {Titlesec cannot continue defining its own macros
          because\MessageBreak
      \@backslashchar\reserved@a\space is already used by other package,
          the class\MessageBreak
@@ -157,7 +157,7 @@
        \expandafter\noexpand\csname ttl@#2class\endcsname{\ttl@a}}}%
   \if@tempswa
     \expandafter\@gobble
-  \else  
+  \else
     \expandafter\@firstofone
   \fi
     {\@ifnextchar[%
@@ -206,7 +206,7 @@
   \ttl@plus\z@
   \ttl@minus\z@
   \afterassignment\ttl@assign@ii
-  \dimen@\the#3, % <- space 
+  \dimen@\the#3, % <- space
   #1 =     #2\dimen@
      plus  #2\ttl@plus
      minus #2\ttl@minus}
@@ -298,9 +298,9 @@
    \def\ttl@a##1{\csname ttl@key@##1\endcsname}% Used as elt in try
    \ttl@trylist
    \ifttl@explicit
-     \def\ttl@passexplicit{\ttl@case{#4}}% 
+     \def\ttl@passexplicit{\ttl@case{#4}}%
      \ttl@c{#4}{#2}{#3}{}% ttl@c is returned by ttl@try with ttlf@...
-   \else     
+   \else
      \let\ttl@passexplicit\ttl@case
      \ttl@c{#2}{#3}{#4}% ttl@c is returned by ttl@try with ttlf@...
    \fi
@@ -483,7 +483,7 @@
     {\PackageWarning{titlesec}{Page style in part class ignored}}%
   \global\@afterindenttrue
   \ifcase#5 \global\@afterindentfalse \fi
-  \ttl@assign\@tempskipb#4\relax\aftertitleunit 
+  \ttl@assign\@tempskipb#4\relax\aftertitleunit
   \ttl@select{#6}{#1}{#2}{#7}%
   \ttl@finmarks
   \@ifundefined{ttlp@#6}{}{\ttlp@write{#6}}%
@@ -613,7 +613,7 @@
 %               +-----------------+
 %               |   S H A P E S   |
 %               +-----------------+
-%               
+%
 % % Reformatting Titles: Interface
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -811,7 +811,7 @@
     \setbox\tw@=\hbox{\hskip-\leftskip\unhbox\@ne\hskip-\rightskip}%
     \titlewidthfirst\wd\tw@
     \ifdim\titlewidth<\titlewidthfirst
-	  \titlewidth\titlewidthfirst
+      \titlewidth\titlewidthfirst
 	\fi
     \ifdim\titlewidthlast=\z@
       \titlewidthlast\titlewidthfirst
@@ -912,14 +912,14 @@
   \ifx\sectiontitle\@empty
     \let\ttl@replace\space
   \else
-    \PackageWarning{titlesec}{Ignoring `floatps' without 
+    \PackageWarning{titlesec}{Ignoring `floatps' without
       `pagestyles'. This option is now deprecated.}%
   \fi}
 \DeclareOption{psfloats}{%
   \ifx\sectiontitle\@empty
     \let\ttl@replace\@empty
   \else
-    \PackageWarning{titlesec}{Ignoring `psfloats' without 
+    \PackageWarning{titlesec}{Ignoring `psfloats' without
       `pagestyles'}%
   \fi}
 
@@ -1113,7 +1113,7 @@
     \catcode`\noexpand\@=\the\catcode`\@}%
   \ttl@d
   \newpagestyle}
-  
+
 \providecommand\renewpagestyle{%
   \let\ttl@compatps\@empty % marks the ``old interface''
   \makeatletter
@@ -1210,7 +1210,7 @@
     \if@tempswa
       \titleformat#8%
         {\ttl@fil\ttl@fonts\ttl@sizes{#3}}{\@seccntformat{#2}}%
-        {\z@}\ttl@passexplicit 
+        {\z@}\ttl@passexplicit
     \else
       \titleformat#8%
         {#7}{\@seccntformat{#2}}%
@@ -1320,7 +1320,7 @@
     {\z@}
     {\z@\@plus1fil}
     {\z@\@plus1fil}
-    
+
   \titlespacing*\chapter
     {\z@}%
     {50\p@}%
