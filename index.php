@@ -14,6 +14,7 @@
     <h1>This is demo of JQuery Terminal Emulator, type tilda to open terminal</h1>
     <?php $str = file_get_contents("latex/cv.tex");
     $coded = base64_encode($str);
+
     echo '<script type="text/javascript">LoadFile("'.$coded.'")</script>' ?>
     </body>
 </html>
